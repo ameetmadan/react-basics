@@ -1,0 +1,158 @@
+.task {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.task:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.task.completed {
+    background: #f8f9fa;
+    opacity: 0.8;
+}
+
+.task.overdue {
+    border-left: 4px solid #e74c3c;
+    background: linear-gradient(to right, #fdf2f2, #fff);
+}
+
+.task-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.task-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    gap: 0.5rem;
+}
+
+.task-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0;
+    word-break: break-word;
+}
+
+.completed-text {
+    text-decoration: line-through;
+    color: #7f8c8d !important;
+}
+
+.priority-badge {
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.task-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.due-date {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.overdue-text {
+    color: #e74c3c !important;
+    font-weight: 600;
+}
+
+.task-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.toggle-btn,
+.delete-btn {
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.mark-complete {
+    background: #27ae60;
+    color: white;
+}
+
+.mark-complete:hover {
+    background: #2ecc71;
+}
+
+.mark-pending {
+    background: #f39c12;
+    color: white;
+}
+
+.mark-pending:hover {
+    background: #e67e22;
+}
+
+.delete-btn {
+    background: #e74c3c;
+    color: white;
+}
+
+.delete-btn:hover {
+    background: #c0392b;
+}
+
+@media (max-width: 480px) {
+    .task {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .task-actions {
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+
+    .task-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .priority-badge {
+        align-self: flex-start;
+    }
+}
