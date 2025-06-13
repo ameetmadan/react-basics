@@ -1,33 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import {CreateTaskComponent} from "./CreateTaskComponent.tsx";
+import {DisplayTaskComponent} from "./DisplayTasksComponent.tsx";
+import {ProgressTaskComponent} from "./ProgressTaskComponent.tsx";
+import {useEffect, useState} from "react";
+import type {Task} from "./types.ts";
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [tasks, setTasks] = useState<Task[]>([]);
+    const [progress, setProgress] = useState<number>(0);
+
+    function onCreateTask(data: Task) {
+        setTasks([...tasks, data]);
+    }
+
+    function increaseProgress() {
+        setProgress(progress + 1)
+    }
+
+    useEffect(() => {
+        setTasks([
+            {
+                id: '1',
+                title: 'Task 1',
+                description: 'Description for Task 1',
+                status: 'not_started'
+            },
+            {
+                id: '2',
+                title: 'Task 2',
+                description: 'Description for Task 2',
+                status: 'completed'
+            },
+            {
+                id: '3',
+                title: 'Task 3',
+                description: 'Description for Task 3',
+                status: 'in_progress'
+            }
+        ])
+    }, []);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+        <CreateTaskComponent onCreateTask={(task) => onCreateTask(task)} />
+        <DisplayTaskComponent tasks={tasks} onCompleteTask={() => increaseProgress()} />
+        <ProgressTaskComponent progress={progress} />
     </>
   )
 }
